@@ -118,7 +118,10 @@ class Env(BaseClass):
     return obs, reward, done, info
 
   def render(self, size=None):
-    size = size or self._size
+    if isinstance(size, int) :
+      size = size
+    else:
+      size = self._size
     unit = size // self._view
     canvas = np.zeros(tuple(size) + (3,), np.uint8)
     local_view = self._local_view(self._player, unit)
